@@ -1,24 +1,43 @@
-# README
+# I-test
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Quotes web-crawler.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+### Prerequisites
 
-* System dependencies
+- RVM
+- Ruby 2.6.5
+- MongoDB 4.2.4
 
-* Configuration
+### Installation
 
-* Database creation
+Create a `.env` file in root and set following variables:
 
-* Database initialization
+```
+DATABASE_HOST=<value> (eg.:localhost:27017)
+```
 
-* How to run the test suite
+Install dependencies:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle
+```
 
-* Deployment instructions
+## Development
 
-* ...
+Running locally:
+
+```
+rails s
+```
+
+Running tests:
+
+```
+rails test
+```
+
+## Authors
+
+Alexandre Magro (alx.magro@gmail.com)
