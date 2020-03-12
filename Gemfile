@@ -15,6 +15,8 @@ gem 'puma', '~> 4.1'
 # gem 'bcrypt', '~> 3.1.7'
 # Mongoid is the officially supported object-document mapper (ODM) for MongoDB in Ruby.
 gem 'mongoid', '~> 7.0.5'
+# Devise is a flexible authentication solution for Rails based on Warden.
+gem 'devise'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
