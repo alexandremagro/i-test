@@ -30,6 +30,9 @@ bundle
 Running locally:
 
 ```
+# Start the database, if it is not already:
+# sudo systemctl start mongod
+
 rails s
 ```
 
