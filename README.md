@@ -27,12 +27,15 @@ bundle
 
 ## Development
 
+Start the database, if it is not already:
+
+```
+sudo systemctl start mongod
+```
+
 Running locally:
 
 ```
-# Start the database, if it is not already:
-# sudo systemctl start mongod
-
 rails s
 ```
 
