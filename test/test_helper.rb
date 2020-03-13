@@ -1,10 +1,17 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require 'support/const'
+require 'support/helpers/authentication_helper'
 
 class ActiveSupport::TestCase
-  # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  include AuthenticationHelper
 
-  # Add more helper methods to be used by all tests here...
+  # Run tests in parallel with specified workers
+  # NOTE: To increase number of process, need configure a database schema by each process
+  parallelize(workers: 1)
+
+  setup do
+    Mongoid.truncate!
+  end
 end

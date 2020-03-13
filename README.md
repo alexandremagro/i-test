@@ -16,6 +16,7 @@ Create a `.env` file in root and set following variables:
 
 ```
 DATABASE_HOST=<value> (eg.:localhost:27017)
+JWT_SECRET_KEY=<value> (can be generated with `rails secret`)
 ```
 
 Install dependencies:
