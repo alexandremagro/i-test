@@ -18,7 +18,7 @@ gem 'mongoid', '~> 7.0.5'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 gem 'devise-jwt', '~> 0.5.9'
-gem 'dry-configurable', '0.9.0' # NOTE: https://github.com/waiting-for-dev/devise-jwt/issues/159 
+gem 'dry-configurable', '0.9.0' # NOTE: https://github.com/waiting-for-dev/devise-jwt/issues/159
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

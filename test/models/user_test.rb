@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "should have name, email and password" do
+  test 'should have name, email and password' do
     user = User.new
     user.valid?
 

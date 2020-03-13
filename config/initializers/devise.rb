@@ -12,7 +12,7 @@ Devise.setup do |config|
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  # config.parent_controller = 'DeviseController'
+  config.parent_controller = 'AuthenticationController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -31,6 +31,19 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/mongoid'
+
+  # ==> JWT configuration
+  config.jwt do |jwt|
+    jwt.secret = ENV['JWT_SECRET_KEY']
+    jwt.expiration_time = 7.days.to_i
+    jwt.dispatch_requests = [
+      ['POST', %r{^/auth/session$}],
+      ['POST', %r{^/auth/registration$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/auth/session$}]
+    ]
+  end
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -265,10 +278,11 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
+  config.warden do |manager|
+    # manager.intercept_401 = false
+    # manager.default_strategies(scope: :user).unshift :some_external_strategy
+    manager.failure_app = FailureApp
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
