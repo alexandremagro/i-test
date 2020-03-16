@@ -3,8 +3,11 @@ require_relative '../config/environment'
 require 'rails/test_help'
 require 'support/const'
 require 'support/helpers/authentication_helper'
+require 'webmock/minitest'
 
 class ActiveSupport::TestCase
+  self.file_fixture_path = File.expand_path('fixtures/files', __dir__)
+
   include AuthenticationHelper
 
   # Run tests in parallel with specified workers

@@ -12,4 +12,10 @@ Rails.application.routes.draw do
                controller: 'devise/registrations'
     end
   end
+
+  # api routes
+
+  namespace :api, defaults: { format: :json } do
+    get 'quotes/:tag', to: 'quotes#index', as: :quotes_by_tag
+  end
 end
