@@ -1,7 +1,7 @@
 class User
-  include Deviseable
   include Mongoid::Document
   include Devise::JWT::RevocationStrategies::Whitelist
+  include Deviseable
 
   devise :database_authenticatable,
          :registerable,
