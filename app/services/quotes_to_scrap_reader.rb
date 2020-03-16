@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'open-uri'
+require 'net/http'
 
 class QuotesToScrapReader < ApplicationService
   def initialize(tag)
@@ -7,7 +7,8 @@ class QuotesToScrapReader < ApplicationService
   end
 
   def call
-    doc = Nokogiri::HTML(open(Const::QUOTES_WEBSITE))
+    uri = URI(Const::QUOTES_WEBSITE)
+    doc = Nokogiri::HTML(Net::HTTP.get(uri))
 
     # Prefer use `where().pluck()` (1 + N queries)
     # instead `find_or_create_by` (N * 2 queries)
