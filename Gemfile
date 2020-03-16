@@ -19,6 +19,8 @@ gem 'mongoid', '~> 7.0.5'
 gem 'devise'
 gem 'devise-jwt', '~> 0.5.9'
 gem 'dry-configurable', '0.9.0' # NOTE: https://github.com/waiting-for-dev/devise-jwt/issues/159
+# Blueprinter is a JSON Object Presenter for Ruby
+gem 'blueprinter'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -44,6 +46,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
