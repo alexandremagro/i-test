@@ -20,14 +20,14 @@ class QuotesToScrapReaderTest < ActiveSupport::TestCase
       assert_equal 'Quote one', first.quote
       assert_equal 'Quote One Author', first.author
       assert_equal '/author/Quote-One-Author', first.author_about
-      assert_equal ['quote-1', 'quote-odd'], first.tags
+      assert_equal %w[quote-1 quote-odd], first.tags
 
       second = Quote.last
 
       assert_equal 'Quote three', second.quote
       assert_equal 'Quote Three Author', second.author
       assert_equal '/author/Quote-Three-Author', second.author_about
-      assert_equal ['quote-3', 'quote-odd'], second.tags
+      assert_equal %w[quote-3 quote-odd], second.tags
     end
   end
 end

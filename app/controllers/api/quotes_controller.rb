@@ -11,6 +11,9 @@ class Api::QuotesController < ApplicationController
   private
 
   def read_quotes
+    return if Search.where(tag: params[:tag]).exists?
+
     QuotesToScrapReader.call(params[:tag])
+    Search.create(tag: params[:tag], searched_at: Time.zone.now)
   end
 end

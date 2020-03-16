@@ -4,11 +4,11 @@ class Api::QuotesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
-    stub_request(:get, Const::QUOTES_WEBSITE)
-      .to_return(
-        status: 200,
-        body: file_fixture('quotes.html').read
-      )
+    @req_stub = stub_request(:get, Const::QUOTES_WEBSITE)
+                .to_return(
+                  status: 200,
+                  body: file_fixture('quotes.html').read
+                )
 
     @user = User.create!(
       name: 'Luke',
@@ -31,7 +31,6 @@ class Api::QuotesControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
       assert_equal QuoteBlueprint.render_as_json(quotes.to_a, root: 'quotes'),
                    response.parsed_body
-
     end
   end
 
@@ -41,11 +40,22 @@ class Api::QuotesControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Quote.count' do
       get api_quotes_by_tag_path(tag)
 
-      quotes = Quote.where(tags: tag)
-
       assert_response :unauthorized
       assert_equal 'You need to sign in or sign up before continuing.',
                    response.parsed_body['message']
     end
+  end
+
+  test 'should not crawl quotes twice by same tag' do
+    tag = 'quote-odd'
+
+    2.times do
+      headers = login_as @user
+
+      get api_quotes_by_tag_path(tag), headers: headers
+      assert_response :success
+    end
+
+    assert_requested @req_stub, times: 1
   end
 end
